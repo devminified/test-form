@@ -223,6 +223,7 @@ function FocusInput(props: inputProfile, ref: Ref<any>) {
     "disable-floating-label": animationLess,
     "prefix-icon": prefixElement,
     "affix-icon": rightIcon,
+    "has-error": props.touched && props.error,
   });
 
   const loader = () => {
