@@ -1,0 +1,18 @@
+.datepicker-holder {
+    display: flex;
+    justify-content: space-between;
+    
+    .default {
+        width: 124px;
+
+        @media (max-width: 640px) {
+            width: 115px;
+        }
+
+        &:first-child {
+            @media (max-width: 640px) {
+                width: 90px;
+            }
+        }
+    }
+}

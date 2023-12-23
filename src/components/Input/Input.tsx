@@ -21,6 +21,7 @@ interface inputProfile
   isPicker?: boolean;
   hasLabel?: boolean;
   isLoading?: boolean;
+  Cplaceholder?: string;
   disableFloatingLabel?: boolean;
   limit?: number;
   validations?: {
@@ -191,25 +192,28 @@ function FocusInput(props: inputProfile, ref: Ref<any>) {
       break;
     default:
       inputElement = (
-        <input
-          {...rest}
-          id={props.id}
-          name={props.name}
-          onChange={onChange}
-          type={inputType}
-          style={{ ...props.style }}
-          onFocus={inputFocused}
-          onBlur={inputBlurred}
-          value={value}
-          placeholder={props?.placeholder}
-          disabled={props?.disabled}
-          ref={ref}
-          data-lpignore={props.dataLpignore}
-          // autoComplete={props.autocomplete}
-          onKeyUp={props.onKeyUp}
-          className={`form-control ${props.className || ""}`}
-          // {...register?.(props.name)}
-        />
+        <div className="input-parent">
+          <input
+            {...rest}
+            id={props.id}
+            name={props.name}
+            onChange={onChange}
+            type={inputType}
+            style={{ ...props.style }}
+            onFocus={inputFocused}
+            onBlur={inputBlurred}
+            value={value}
+            placeholder={props?.placeholder}
+            disabled={props?.disabled}
+            ref={ref}
+            data-lpignore={props.dataLpignore}
+            // autoComplete={props.autocomplete}
+            onKeyUp={props.onKeyUp}
+            className={`form-control ${props.className || ""}`}
+            // {...register?.(props.name)}
+          />
+          <span className="c-label">{props?.Cplaceholder}</span>
+        </div>
       );
   }
 
@@ -246,6 +250,11 @@ function FocusInput(props: inputProfile, ref: Ref<any>) {
   };
   return (
     <div className={iClasses}>
+      {hasLabel && (
+        <label htmlFor={props.id} className={labelClasses}>
+          {label}
+        </label>
+      )}
       {prefixElement && <div className="pre-fix"> {prefixElement}</div>}
 
       {icon && (
@@ -272,21 +281,11 @@ function FocusInput(props: inputProfile, ref: Ref<any>) {
           {limit - value?.length || 0} characters
         </div>
       )}
-      {hasLabel && (
-        <label htmlFor={props.id} className={labelClasses}>
-          <span>{label}</span>
-        </label>
-      )}
       {loader()}
       {props.touched && props.error && (
         <>
           <div
-            id="title-error"
-            style={{
-              width: "100%",
-              textAlign: "right",
-            }}
-            className="error-msg is-invalid d-block"
+            id="title-error" className="error-msg is-invalid d-block"
           >
             <div>{props.error}</div>
           </div>

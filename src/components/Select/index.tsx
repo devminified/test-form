@@ -9,6 +9,7 @@ import SelectComponent, {
   StylesConfig,
   components,
 } from "react-select";
+import "./select.scss"
 export interface SelectProps<
   Option = unknown,
   IsMulti extends boolean = false,

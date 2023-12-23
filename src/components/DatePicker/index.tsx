@@ -1,6 +1,7 @@
 import { useState } from "react";
 import RSelect from "../Select";
 import { FormikProps } from "formik";
+import './datepicker.scss'
 
 interface IDatePicker {
   formik: FormikProps<TForm>;
@@ -80,47 +81,50 @@ const DatePicker: React.FC<IDatePicker> = ({ formik, ...props }) => {
   };
 
   return (
-    <div>
-      <RSelect
-        options={generateDaysOptions()}
-        placeholder="Day"
-        isSearchable={false}
-        value={
-          startDate
-            ? { label: String(startDate.getDate()), value: startDate.getDate() }
-            : null
-        }
-        touched={touched.day}
-        error={errors.day}
-        onChange={(selectedOption: any) => {
-          setStartDate(
-            new Date(
-              selectedYear || 0,
-              months.findIndex((month) => month.value === selectedMonth) + 1,
-              selectedOption.value
-            )
-          );
-        }}
-      />
-      <RSelect
-        touched={touched.month}
-        error={errors.month}
-        options={months}
-        onBlur={(e: any) => {
-          console.log("🚀 ~ file: index.tsx:96 ~ e:", e.target);
+    <div className="text-input">
+      <label>Birthdate</label>
+      <div className="datepicker-holder">
+        <RSelect
+          options={generateDaysOptions()}
+          placeholder="Day"
+          isSearchable={false}
+          value={
+            startDate
+              ? { label: String(startDate.getDate()), value: startDate.getDate() }
+              : null
+          }
+          touched={touched.day}
+          error={errors.day}
+          onChange={(selectedOption: any) => {
+            setStartDate(
+              new Date(
+                selectedYear || 0,
+                months.findIndex((month) => month.value === selectedMonth) + 1,
+                selectedOption.value
+              )
+            );
+          }}
+        />
+        <RSelect
+          touched={touched.month}
+          error={errors.month}
+          options={months}
+          onBlur={(e: any) => {
+            console.log("🚀 ~ file: index.tsx:96 ~ e:", e.target);
 
-          // handleBlur
-        }}
-        onChange={handleMonthChange}
-        placeholder="Month"
-      />
-      <RSelect
-        touched={touched.year}
-        error={errors.year}
-        options={years}
-        onChange={handleYearChange}
-        placeholder="Year"
-      />
+            // handleBlur
+          }}
+          onChange={handleMonthChange}
+          placeholder="Month"
+        />
+        <RSelect
+          touched={touched.year}
+          error={errors.year}
+          options={years}
+          onChange={handleYearChange}
+          placeholder="Year"
+        />
+      </div>
     </div>
   );
 };

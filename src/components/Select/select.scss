@@ -1,0 +1,25 @@
+.react-select-container {
+    .react-select__control  {
+        min-height: 50px;
+        border-color: #A5B6CD;
+        font-size: 18px;
+        line-height: 1.5;
+    }
+
+    .react-select__indicator-separator  {
+        display: none;
+    }
+
+    .react-select__placeholder  {
+        color: #4D5C6F;
+    }
+
+    .react-select__value-container {
+        padding: 4px 15px;
+        letter-spacing: 0.36px;
+    }
+
+    .react-select__indicator  {
+        color: #2C3642;
+    }
+}

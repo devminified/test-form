@@ -1,169 +1,35 @@
 .button {
-  background: var(--primary);
-  border: none;
-  outline: none;
-  font-size: 15px;
-  line-height: 22px;
-  font-weight: 500;
-  padding: 8px 21px;
-  display: inline-flex;
-  align-items: center;
-  min-height: 50px;
-  gap: 14px;
-  position: relative;
+  border: 1px solid transparent;
+  height: 46px;
+  border-radius: 6px;
+  padding: 10px;
+  min-width: 145px;
+  text-align: center;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.2px;
+  font-weight: 700;
   transition: all 0.4s ease;
-  color: var(--white);
 
-  &.medium {
-    min-height: 42px;
-  }
+  &.primary {
+    background: #127C95;
+    color: #fff;
 
-  &.small {
-    min-height: 32px;
-    font-size: 14px;
-    line-height: 16px;
-    padding: 6px 14px;
-    gap: 6px;
-
-    svg {
-      width: 18px;
-      height: auto;
+    &:hover {
+      background: none;
+      color: #127C95;
+      border-color: #127C95;
     }
-  }
-
-  &.block {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-  }
-
-  &.rounded {
-    border-radius: 50px;
   }
 
   &.outline {
+    border-color: #127C95;
+    color: #127C95;
     background: none;
-    border: 1px solid var(--border-color);
-    color: var(--primary-light);
 
     &:hover {
-      background: var(--border-color);
-      border-color: var(--primary-light);
-    }
-  }
-
-  &.button-dark {
-    background: #461959;
-  }
-
-  &:hover {
-    background: var(--btn-hover);
-
-    .btn-tag-item {
-      #light_mode & {
-        background: rgba(255, 255, 255, 0.2);
-      }
-    }
-  }
-
-  &:disabled {
-    background: #171b1f;
-    color: #747679;
-
-    #light_mode & {
-      background: #bdbdbd;
+      background: #127C95;
       color: #fff;
-    }
-  }
-
-  &.secondary {
-    background: #20262b;
-
-    #light_mode & {
-      background: var(--primary);
-    }
-  }
-
-  &.text {
-    background: none;
-    padding: 0;
-    gap: 6px;
-    min-height: inherit;
-    color: var(--primary);
-    font-size: 14px;
-    line-height: 18px;
-    text-transform: uppercase;
-    font-weight: 500;
-  }
-
-  &.btn-subscribe {
-    justify-content: space-between;
-    padding: 8px 12px 8px 24px;
-    border: 2px solid var(--primary);
-    font-size: 14px;
-
-    &:hover {
-      border-color: var(--btn-hover);
-    }
-
-    &.unsbus {
-      background: none;
-      padding-right: 15px;
-
-      #light_mode & {
-        color: var(--primary);
-      }
-
-      path {
-        #light_mode & {
-          fill: var(--primary);
-        }
-      }
-    }
-
-    .btn-tag-item {
-      padding-right: 3px;
-
-      &.text-only {
-        padding-right: 8px;
-      }
-    }
-  }
-
-  .circular-loader {
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translate(0, -50%);
-
-    .loader1 {
-      span {
-        border-color: transparent var(--primary) var(--primary);
-      }
-    }
-  }
-
-  svg {
-    display: block;
-  }
-
-  .btn-tag-item {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 3px 5px 3px 8px;
-    font-size: 15px;
-    line-height: 22px;
-    border-radius: 14px;
-    background: rgba(45, 18, 42, 0.3);
-
-    #light_mode & {
-      background: #49a7e6;
-    }
-
-    svg {
-      max-width: 22px;
-      height: auto;
     }
   }
 }
