@@ -9,11 +9,10 @@ import SelectComponent, {
   StylesConfig,
   components,
 } from "react-select";
-import "./select.scss"
+import "./select.scss";
 export interface SelectProps<
   Option = unknown,
-  IsMulti extends boolean = false,
-  Group extends GroupBase<Option> = GroupBase<Option>
+  IsMulti extends boolean = false
 > {
   options?: OptionsOrGroups<unknown, GroupBase<unknown>> | undefined;
   placeholder?: string;
@@ -119,7 +118,7 @@ const RSelect: React.FC<SelectProps> = ({
         // filterOption={filterOption}
         {...rest}
       />
-      {error && (
+      {error && touched && (
         <>
           <div id="title-error" className="error-msg is-invalid d-block">
             <div>{error}</div>

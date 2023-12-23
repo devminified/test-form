@@ -285,9 +285,7 @@ function FocusInput(props: inputProfile, ref: Ref<any>) {
       {loader()}
       {props.touched && props.error && (
         <>
-          <div
-            id="title-error" className="error-msg is-invalid d-block"
-          >
+          <div id="title-error" className="error-msg is-invalid d-block">
             <div>{props.error}</div>
           </div>
         </>

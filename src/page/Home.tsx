@@ -4,6 +4,7 @@ import Input from "../components/Input/Input";
 import { FormSchemaValidator } from "../validation";
 import { useFormik } from "formik";
 import "./home.scss";
+import { createUser } from "../api/User";
 import { toast } from "react-toastify";
 const Home = () => {
   const formik = useFormik<TForm>({
@@ -18,14 +19,19 @@ const Home = () => {
       confirm_password: "",
     },
     validationSchema: FormSchemaValidator,
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: async (values) => {
+      await createUser(values)
+        .then((res) => {
+          toast.success(res.description);
+          formik.resetForm();
+        })
+        .catch(() => {
+          toast.error("There was an error creating the account.");
+        });
     },
   });
   const {
     values,
-
-    setValues,
     handleChange,
     handleBlur,
     handleSubmit,
@@ -33,7 +39,6 @@ const Home = () => {
     touched,
     // tslint:disable-next-line: react-hooks-nesting
   } = formik;
-  console.log("🚀 ~ file: Home.tsx:34 ~ Home ~ errors:", errors);
   return (
     <div className="form-wrap">
       <h1>Create User Account</h1>
@@ -41,7 +46,7 @@ const Home = () => {
         <Input
           type="text"
           label="Full Name"
-          name="fullName"
+          name="full_name"
           Cplaceholder="Full Name"
           materialDesign
           onChange={handleChange}
@@ -105,10 +110,10 @@ const Home = () => {
       <div className="action-btns">
         <Button outline>Cancel</Button>
         <Button
+          type="submit"
           onClick={() => {
             handleSubmit();
-            toast.success("User account successfully created. ");
-            toast.error("There was an error creating the account.");
+            // toast.error("There was an error creating the account.");
           }}
           variant="primary"
         >

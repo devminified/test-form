@@ -1,25 +1,14 @@
 import { useState } from "react";
 import RSelect from "../Select";
 import { FormikProps } from "formik";
-import './datepicker.scss'
+import "./datepicker.scss";
 
 interface IDatePicker {
   formik: FormikProps<TForm>;
 }
 
-const DatePicker: React.FC<IDatePicker> = ({ formik, ...props }) => {
-  const {
-    values,
-
-    setValues,
-    handleChange,
-    handleBlur,
-    handleSubmit,
-    setFieldValue,
-    errors,
-    touched,
-    // tslint:disable-next-line: react-hooks-nesting
-  } = formik;
+const DatePicker: React.FC<IDatePicker> = ({ formik }) => {
+  const { setFieldValue, errors, touched } = formik;
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [selectedMonth, setSelectedMonth] = useState<string | null>(null);
   const [selectedYear, setSelectedYear] = useState<number | null>(null);
@@ -49,20 +38,17 @@ const DatePicker: React.FC<IDatePicker> = ({ formik, ...props }) => {
   };
 
   const handleMonthChange = (selectedOption: any) => {
-    console.log(
-      "🚀 ~ file: index.tsx:51 ~ handleMonthChange ~ selectedOption:",
-      selectedOption
-    );
     setSelectedMonth(selectedOption.value);
+    setFieldValue("month", selectedOption.value);
+    setFieldValue("day", "");
+
     setStartDate(null); // Reset the date when the month changes
   };
 
   const handleYearChange = (selectedOption: any) => {
-    console.log(
-      "🚀 ~ file: index.tsx:57 ~ handleYearChange ~ selectedOption:",
-      selectedOption
-    );
+    setFieldValue("year", selectedOption.value);
     setSelectedYear(selectedOption.value);
+    setFieldValue("day", "");
     setStartDate(null); // Reset the date when the year changes
   };
 
@@ -90,7 +76,10 @@ const DatePicker: React.FC<IDatePicker> = ({ formik, ...props }) => {
           isSearchable={false}
           value={
             startDate
-              ? { label: String(startDate.getDate()), value: startDate.getDate() }
+              ? {
+                  label: String(startDate.getDate()),
+                  value: startDate.getDate(),
+                }
               : null
           }
           touched={touched.day}
@@ -103,17 +92,13 @@ const DatePicker: React.FC<IDatePicker> = ({ formik, ...props }) => {
                 selectedOption.value
               )
             );
+            setFieldValue("day", selectedOption.value);
           }}
         />
         <RSelect
           touched={touched.month}
           error={errors.month}
           options={months}
-          onBlur={(e: any) => {
-            console.log("🚀 ~ file: index.tsx:96 ~ e:", e.target);
-
-            // handleBlur
-          }}
           onChange={handleMonthChange}
           placeholder="Month"
         />
