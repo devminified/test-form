@@ -3,7 +3,8 @@ import DatePicker from "../components/DatePicker";
 import Input from "../components/Input/Input";
 import { FormSchemaValidator } from "../validation";
 import { useFormik } from "formik";
-import './home.scss'
+import "./home.scss";
+import { toast } from "react-toastify";
 const Home = () => {
   const formik = useFormik<TForm>({
     initialValues: {
@@ -106,6 +107,8 @@ const Home = () => {
         <Button
           onClick={() => {
             handleSubmit();
+            toast.success("User account successfully created. ");
+            toast.success("There was an error creating the account.");
           }}
           variant="primary"
         >

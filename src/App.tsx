@@ -1,16 +1,17 @@
-import { useState } from "react";
+import { Fragment } from "react";
+import { ToastContainer } from "react-toastify";
 import Home from "./page/Home";
 import Header from "./components/Header";
-import './index.css'
+import "react-toastify/dist/ReactToastify.css";
+import "./index.css";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <>
+    <Fragment>
       <Header />
       <Home />
-    </>
+      <ToastContainer limit={100000} />
+    </Fragment>
   );
 }
 
