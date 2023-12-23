@@ -108,7 +108,7 @@ const Home = () => {
           onClick={() => {
             handleSubmit();
             toast.success("User account successfully created. ");
-            toast.success("There was an error creating the account.");
+            toast.error("There was an error creating the account.");
           }}
           variant="primary"
         >

@@ -10,7 +10,7 @@ function App() {
     <Fragment>
       <Header />
       <Home />
-      <ToastContainer limit={100000} />
+      <ToastContainer limit={100000} autoClose={false}/>
     </Fragment>
   );
 }
